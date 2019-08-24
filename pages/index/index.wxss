@@ -106,13 +106,19 @@
   color: rgba(0, 0, 0, 0.5)
 }
 .day-text{
-  flex-grow: 1;
+  /* flex-grow: 1; */
   /* padding-right: 30rpx; */
   text-align: left;
 }
+.tips{
+  flex-grow: 1;
+  text-align: right;
+  opacity: 0.3;
+  padding-right: 30rpx;
+}
 .temp-text {
   /* flex-grow: 1; */
-  padding-right: 30rpx;
+  padding-left: 30rpx;
   /* text-align: right; */
 }
 .arrow-icon {

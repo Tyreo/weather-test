@@ -18,7 +18,9 @@
     <image class="weather-bg" src="{{nowWeatherBackground}}"></image>
     <view class="day-weather" bindtap='onTapDayWeather'>
       <view class="day-text">{{todayDate}}</view>
+      
       <view class="temp-text">{{todayTemp}}</view>
+      <view class="tips">点击查看一周预报</view>
       <image class="arrow-icon" src="/images/arrow.png"></image>
     </view>
 </view>
