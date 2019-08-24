@@ -48,7 +48,27 @@ Page({
     this.qqmapsdk = new QQMapWX({
       key:'NFVBZ-Z6UCV-B26PK-UYZAQ-5GBHT-3TBL2'
     })
-    this.getNow()
+    wx.getSetting({
+      success: res => {
+        let auth = res.authSetting['scope.userLocation']
+        let locationAuthType = auth ? AUTHORIZED
+          : (auth === false) ? UNAUTHORIZED : UNPROMPTED
+        let locationTipsText = auth ? AUTHORIZED_TIPS
+          : (auth === false) ? UNAUTHORIZED_TIPS : UNPROMPTED_TIPS
+        this.setData({
+          locationAuthType: locationAuthType,
+          locationTipsText: locationTipsText
+        })
+
+        if (auth)
+          this.getCityAndWeather()
+        else
+          this.getNow() //使用默认城市广州
+      },
+      fail: () => {
+        this.getNow() //使用默认城市广州
+      }
+    })
   },
   // onShow(){
   //   // wx.showToast({
@@ -140,14 +160,14 @@ Page({
         success:res=>{
           let auth = res.authSetting['scope.userLocation']
           if(auth){
-            this.getLocation()
+            this.getCityAndWeather()
           }
         }
       })
     else
-      this.getLocation()
+      this.getCityAndWeather()
   },
-  getLocation() {
+  getCityAndWeather() {
     wx.getLocation({
       success: res => {
         this.setData({
